@@ -20,6 +20,7 @@ package com.comphenix.packetwrapper;
 
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.events.PacketContainer;
+import com.comphenix.protocol.wrappers.EnumWrappers;
 import com.comphenix.protocol.wrappers.WrappedChatComponent;
 
 public class WrapperPlayServerChat extends AbstractPacket {
@@ -70,25 +71,21 @@ public class WrapperPlayServerChat extends AbstractPacket {
 		setMessage(value);
 	}
 
-	/**
-	 * Retrieve Position.
-	 * <p>
-	 * Notes: 0 - Chat (chat box) ,1 - System Message (chat box), 2 - Above
-	 * action bar
-	 * 
-	 * @return The current Position
-	 */
-	public byte getPosition() {
-		return handle.getBytes().read(0);
-	}
+    /**
+     * Retrieve Position.
+     *
+     * @return The current Position
+     */
+    public EnumWrappers.ChatType getPosition() {
+        return handle.getChatTypes().read(0);
+    }
 
-	/**
-	 * Set Position.
-	 * 
-	 * @param value - new value.
-	 */
-	public void setPosition(byte value) {
-		handle.getBytes().write(0, value);
-	}
-
+    /**
+     * Set Position.
+     *
+     * @param value - new value.
+     */
+	public void setPosition(EnumWrappers.ChatType value) {
+	    handle.getChatTypes().write(0, value);
+    }
 }
